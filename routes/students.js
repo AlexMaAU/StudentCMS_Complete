@@ -3,7 +3,6 @@ const studentRouter = express.Router()
 const {getAllStudents,getStudentById,createStudent,updateStudent,deleteStudent,addStudentToCourse,removeStudentFromCourse} = require('../controllers/students')
 
 //get all students, can filter by query
-//但是我们依然需要给每个routeHandler前面都加上catchAll()，还是在重复干一件事情，那么能不能进一步简化？
 //不用自己写中间件，使用第三方包：express-async-errors
 studentRouter.get('/', getAllStudents)  //catchAll函数把routeHandler中间件进行try catch验证，如果有错误，把错误pass to error handling middleware
 
