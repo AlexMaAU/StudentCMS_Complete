@@ -1,5 +1,3 @@
-//用来对密码等高度敏感并且不需要在客户端显示的数据进行加密
-
 //导入bcrypt包
 const bcrypt = require('bcrypt')
 
