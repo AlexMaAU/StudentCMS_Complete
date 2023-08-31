@@ -21,3 +21,6 @@ config.js
 # 忽略npm包锁文件
 package-lock.json
 yarn.lock
+
+# 忽略.env
+.env
