@@ -5,7 +5,7 @@ const joi = require('joi')
 const {courseSchemaValidate} = require('../utils/validate')
 
 //不管是request还是validate，都可能会出现错误，所以需要设置错误处理机制
-//以下是常见的错误处理方式
+//以下是常见的错误处理方式 - 异步请求错误处理机制
 /*
 1. callback形式 - err只会处理当前请求的错误，所以每个回调函数都需要写一次错误处理。所以这种形式目前已经很少用了。
 Course.find().exec((err,data)=>{  //服务请求执行的时候直接在callback中处理
@@ -32,6 +32,8 @@ try {
 }
 */
 
+// 下面使用 try catch 在代码块内进行异常处理
+// 但是存在重复代码，那么也可以直接把异常传递给next中间件进行统一处理，见 studentController
 const getAllCourses = async (req,res)=>{
     //populate多个属性，用数组[]形式传入
     try {
