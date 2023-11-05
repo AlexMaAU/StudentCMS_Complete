@@ -11,6 +11,7 @@ const Course = require('../models/courses');
  *    try {
  *      routeHandler(req, res, next);
  *    } catch(error) {
+ *      //错误统一交给error handling middleware处理
  *      next(error);  // pass to error middleware
  *    }
  *  }
@@ -44,10 +45,11 @@ const getAllStudents = async (req, res) => {
         }
     }
     */
-  //注意，只在需要获取详细信息的地方做populate，因为populate操作会耗费资源，所以不需要的地方不要去做poplate操作
+  //注意，只在需要获取详细信息的地方做populate，因为populate操作会耗费资源，所以不需要的地方不要去做populate操作
   //用await语法糖代替.then()
   //two ways to execute a query on a model. Using callback or using exec() function.
   //exec() function returns a promise, that you can use it with then() or async/await to execute a query on a model "asynchronous".
+
   const students = await Student.find().exec();  // 使用了express-async-errors，不需要再用try catch来处理
   res.json(students);
 };
