@@ -125,7 +125,9 @@ const deleteCourseById = async (req, res, next) => {
     }
     //注意：因为目前model里course和student还有teacher之间是双向绑定的，如果只把course从数据库中删除，但是student和teacher文档下的course关联不会被删除，需要手动处理
     await Student.updateMany(
+      // 这是更新操作的第一个参数，它指定了要更新哪些学生记录。这里使用了一个查询条件，即查找具有 courses 属性包含特定 id 值的学生记录。
       { courses: id },
+      // 这是更新操作的第二个参数，它定义了要对匹配的记录执行的操作。在这里，使用了 $pull 操作符，它的作用是从 courses 数组中删除指定的 id 值。
       {
         $pull: {
           courses: id,

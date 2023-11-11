@@ -29,7 +29,7 @@ const studentSchema = new Schema({
                 //string()把验证内容转换成字符串
                 //email()定义验证格式
                 //validate(email)表示用之前的设置来验证email字段
-                //validate()的结果中包含error属性，如果error属性是undefined，代表验证通过。如果error属性存在，则代表验证错误
+                //.error === undefined 这句代码的目的是检查验证是否通过，以及是否存在任何验证错误。在 Joi 中，如果验证通过，.error 属性将是 undefined，这表示没有错误。如果有验证错误，.error 属性将包含有关错误的信息。
                 return joi.string().email().validate(email).error === undefined
                },
                msg: 'Invalid email format'

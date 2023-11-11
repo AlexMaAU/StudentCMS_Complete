@@ -1,13 +1,17 @@
-const express = require('express');
-require('express-async-errors'); //这个包一定要在导入express后再导入，否则不起作用，专门用来处理异步错误。但是还是需要自定义错误中间件来处理要自定义的错误处理。
+const express = require("express");
+require("express-async-errors"); //这个包一定要在导入express后再导入，否则不起作用，专门用来处理异步错误。但是还是需要自定义错误中间件来处理要自定义的错误处理。
+const cors = require("cors");
 const app = express();
-require('dotenv').config();
-const indexRouter = require('./routes/index');
-const connectDB = require('./utils/db');
-const unknownError = require('./middlewares/unknownError');
-const validateError = require('./middlewares/validateError');
+require("dotenv").config();
+const indexRouter = require("./routes/index");
+const connectDB = require("./utils/db");
+const unknownError = require("./middlewares/unknownError");
+const validateError = require("./middlewares/validateError");
 
 const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(cors());
 
 app.use(indexRouter);
 
